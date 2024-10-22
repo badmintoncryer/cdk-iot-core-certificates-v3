@@ -1,10 +1,10 @@
+import { IoT } from '@aws-sdk/client-iot';
+import { ServiceException } from '@smithy/smithy-client';
 import {
   CloudFormationCustomResourceSuccessResponse as Success,
   CloudFormationCustomResourceFailedResponse as Failure,
   CloudFormationCustomResourceEvent as Event,
 } from 'aws-lambda';
-import { ServiceException } from '@smithy/smithy-client';
-import { IoT } from '@aws-sdk/client-iot';
 import { iotAdaptor } from './adapters/iot';
 import { thingAdaptor } from './adapters/thing';
 

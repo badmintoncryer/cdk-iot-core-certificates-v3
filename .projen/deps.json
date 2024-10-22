@@ -2,12 +2,12 @@
   "dependencies": [
     {
       "name": "@aws-cdk/integ-runner",
-      "version": "2.80.0-alpha.0",
+      "version": "2.100.0-alpha.0",
       "type": "build"
     },
     {
       "name": "@aws-cdk/integ-tests-alpha",
-      "version": "2.80.0-alpha.0",
+      "version": "2.100.0-alpha.0",
       "type": "build"
     },
     {
@@ -95,8 +95,24 @@
       "type": "build"
     },
     {
+      "name": "@aws-sdk/client-iot",
+      "type": "bundled"
+    },
+    {
+      "name": "@smithy/smithy-client",
+      "type": "bundled"
+    },
+    {
+      "name": "@types/aws-lambda",
+      "type": "bundled"
+    },
+    {
+      "name": "aws-lambda",
+      "type": "bundled"
+    },
+    {
       "name": "aws-cdk-lib",
-      "version": "^2.80.0",
+      "version": "^2.100.0",
       "type": "peer"
     },
     {
