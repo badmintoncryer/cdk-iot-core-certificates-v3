@@ -8,17 +8,51 @@ import { CfnParameter } from 'aws-cdk-lib/aws-ssm';
 import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 
+/**
+ * Properties of ThingWithCert construct
+ */
 export interface ThingWithCertProps extends ResourceProps {
+  /**
+   * The name of the thing
+   */
   readonly thingName: string;
+
+  /**
+   * Whether to save the certificate and private key to AWS Systems Manager Parameter Store
+   */
   readonly saveToParamStore?: boolean;
+
+  /**
+   * The prefix for the parameter store path
+   */
   readonly paramPrefix?: string;
 }
 
+/**
+ * A CDK Construct for creating an AWS IoT Core thing with a certificate
+ */
 export class ThingWithCert extends Construct {
+
+  /**
+   * The ARN of the thing
+   */
   public readonly thingArn: string;
+
+  /**
+   * The ID of the certificate
+   */
   public readonly certId: string;
+
+  /**
+   * The certificate PEM
+   */
   public readonly certPem: string;
+
+  /**
+   * The private key
+   */
   public readonly privKey: string;
+
   constructor(scope: Construct, id: string, props: ThingWithCertProps) {
     super(scope, id);
 
