@@ -11,7 +11,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
   keywords: ['aws', 'cdk', 'ec2', 'aws-cdk'],
   gitignore: ['*.js', '*.d.ts', '!test/.*.snapshot/**/*', '.tmp'],
-  deps: [],
+  deps: ['aws-lambda', '@aws-sdk/client-iot'],
   description: 'CDK Construct for AWS IoT Core certificates and things',
   devDeps: [
     '@aws-cdk/integ-runner@2.80.0-alpha.0',
