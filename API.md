@@ -4,6 +4,8 @@
 
 ### ThingWithCert <a name="ThingWithCert" id="cdk-iot-core-certificates-v3.ThingWithCert"></a>
 
+A CDK Construct for creating an AWS IoT Core thing with a certificate.
+
 #### Initializers <a name="Initializers" id="cdk-iot-core-certificates-v3.ThingWithCert.Initializer"></a>
 
 ```typescript
@@ -85,10 +87,10 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.certId">certId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.certPem">certPem</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.privKey">privKey</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.thingArn">thingArn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.certId">certId</a></code> | <code>string</code> | The ID of the certificate. |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.certPem">certPem</a></code> | <code>string</code> | The certificate PEM. |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.privKey">privKey</a></code> | <code>string</code> | The private key. |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCert.property.thingArn">thingArn</a></code> | <code>string</code> | The ARN of the thing. |
 
 ---
 
@@ -112,6 +114,8 @@ public readonly certId: string;
 
 - *Type:* string
 
+The ID of the certificate.
+
 ---
 
 ##### `certPem`<sup>Required</sup> <a name="certPem" id="cdk-iot-core-certificates-v3.ThingWithCert.property.certPem"></a>
@@ -121,6 +125,8 @@ public readonly certPem: string;
 ```
 
 - *Type:* string
+
+The certificate PEM.
 
 ---
 
@@ -132,6 +138,8 @@ public readonly privKey: string;
 
 - *Type:* string
 
+The private key.
+
 ---
 
 ##### `thingArn`<sup>Required</sup> <a name="thingArn" id="cdk-iot-core-certificates-v3.ThingWithCert.property.thingArn"></a>
@@ -142,12 +150,16 @@ public readonly thingArn: string;
 
 - *Type:* string
 
+The ARN of the thing.
+
 ---
 
 
 ## Structs <a name="Structs" id="Structs"></a>
 
 ### ThingWithCertProps <a name="ThingWithCertProps" id="cdk-iot-core-certificates-v3.ThingWithCertProps"></a>
+
+Properties of ThingWithCert construct.
 
 #### Initializer <a name="Initializer" id="cdk-iot-core-certificates-v3.ThingWithCertProps.Initializer"></a>
 
@@ -165,9 +177,9 @@ const thingWithCertProps: ThingWithCertProps = { ... }
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.environmentFromArn">environmentFromArn</a></code> | <code>string</code> | ARN to deduce region and account from. |
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.physicalName">physicalName</a></code> | <code>string</code> | The value passed in by users to the physical name prop of the resource. |
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.region">region</a></code> | <code>string</code> | The AWS region this resource belongs to. |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.thingName">thingName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.paramPrefix">paramPrefix</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.saveToParamStore">saveToParamStore</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.thingName">thingName</a></code> | <code>string</code> | The name of the thing. |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.paramPrefix">paramPrefix</a></code> | <code>string</code> | The prefix for the parameter store path. |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.saveToParamStore">saveToParamStore</a></code> | <code>boolean</code> | Whether to save the certificate and private key to AWS Systems Manager Parameter Store. |
 
 ---
 
@@ -242,6 +254,8 @@ public readonly thingName: string;
 
 - *Type:* string
 
+The name of the thing.
+
 ---
 
 ##### `paramPrefix`<sup>Optional</sup> <a name="paramPrefix" id="cdk-iot-core-certificates-v3.ThingWithCertProps.property.paramPrefix"></a>
@@ -252,6 +266,8 @@ public readonly paramPrefix: string;
 
 - *Type:* string
 
+The prefix for the parameter store path.
+
 ---
 
 ##### `saveToParamStore`<sup>Optional</sup> <a name="saveToParamStore" id="cdk-iot-core-certificates-v3.ThingWithCertProps.property.saveToParamStore"></a>
@@ -261,6 +277,8 @@ public readonly saveToParamStore: boolean;
 ```
 
 - *Type:* boolean
+
+Whether to save the certificate and private key to AWS Systems Manager Parameter Store.
 
 ---
 
