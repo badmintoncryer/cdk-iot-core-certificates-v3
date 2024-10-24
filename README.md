@@ -27,7 +27,7 @@ npm i cdk-iot-core-certificates-v3
 ```typescript
 import { ThingWithCert } from 'cdk-iot-core-certificate-v3';
 
-const thing = new ThingWithCert(this, 'MyThing', {
+const { thingArn, certId, certPem, privKey } = new ThingWithCert(this, 'MyThing', {
   // The name of the thing
   thingName: 'MyThing',
   // Whether to save the certificate and private key to the SSM Parameter Store
@@ -35,9 +35,4 @@ const thing = new ThingWithCert(this, 'MyThing', {
   // The prefix to use for the SSM Parameter Store parameters
   paramPrefix: 'test',
 });
-
-const thingArn = thing.thingArn;
-const certId = thing.certId;
-const certPem = thing.certPem;
-const privateKey = thing.privKey;
 ```
