@@ -25,7 +25,7 @@ npm i cdk-iot-core-certificates-v3
 ## Usage
 
 ```typescript
-import { ThingWithCert } from 'cdk-iot-core-certificate-v3';
+import { ThingWithCert } from 'cdk-iot-core-certificates-v3';
 
 const { thingArn, certId, certPem, privKey } = new ThingWithCert(this, 'MyThing', {
   // The name of the thing
