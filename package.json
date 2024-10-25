@@ -38,8 +38,8 @@
   "devDependencies": {
     "@aws-cdk/integ-runner": "2.100.0-alpha.0",
     "@aws-cdk/integ-tests-alpha": "2.100.0-alpha.0",
-    "@types/jest": "^29.5.13",
-    "@types/node": "^22.7.8",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.7.9",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
     "aws-cdk-lib": "2.100.0",
@@ -65,7 +65,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-iot": "^3.675.0",
+    "@aws-sdk/client-iot": "^3.679.0",
     "@smithy/smithy-client": "^3.4.2",
     "@types/aws-lambda": "^8.10.145",
     "aws-lambda": "^1.0.7"
