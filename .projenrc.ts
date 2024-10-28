@@ -11,7 +11,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
   keywords: ['aws', 'cdk', 'ec2', 'aws-cdk'],
   gitignore: ['*.js', '*.d.ts', '!test/.*.snapshot/**/*', '.tmp'],
-  deps: ['aws-lambda', '@aws-sdk/client-iot'],
+  deps: ['@aws-sdk/client-iot'],
   description: 'CDK Construct for AWS IoT Core certificates and things',
   devDeps: [
     '@aws-cdk/integ-runner@2.100.0-alpha.0',
@@ -23,7 +23,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'cdk-iot-core-certificates-v3',
     module: 'cdk-iot-core-certificates-v3',
   },
-  bundledDeps: ['@aws-sdk/client-iot', 'aws-lambda', '@smithy/smithy-client', '@types/aws-lambda'],
+  bundledDeps: ['@aws-sdk/client-iot', '@smithy/smithy-client', 'aws-lambda', '@types/aws-lambda'],
 });
 project.projectBuild.testTask.exec(
   'yarn tsc -p tsconfig.dev.json && yarn integ-runner',
