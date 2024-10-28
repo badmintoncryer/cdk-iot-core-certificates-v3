@@ -4,7 +4,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import { ThingWithCert } from '../src';
 
 const app = new App();
-const stack = new Stack(app, 'IntegTestStack');
+const stack = new Stack(app, 'ThingWithCertIntegTestStack');
 
 const saveFileBucket = new s3.Bucket(stack, 'SaveFileBucket', {
   removalPolicy: RemovalPolicy.DESTROY,
@@ -43,7 +43,7 @@ const integ = new IntegTest(app, 'IntegTest', {
 integ.assertions
   .awsApiCall('S3', 'getObject', {
     Bucket: saveFileBucket.bucketName,
-    Key: `${thingName}.cert.pem`,
+    Key: `${thingName}/${thingName}.cert.pem`,
   })
   .waitForAssertions({
     totalTimeout: Duration.minutes(5),
@@ -52,7 +52,7 @@ integ.assertions
 integ.assertions
   .awsApiCall('S3', 'getObject', {
     Bucket: saveFileBucket.bucketName,
-    Key: `${thingName}.private.key`,
+    Key: `${thingName}/${thingName}.private.key`,
   })
   .waitForAssertions({
     totalTimeout: Duration.minutes(5),

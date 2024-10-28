@@ -129,8 +129,8 @@ export class ThingWithCert extends Construct {
     if (saveFileBucket) {
       new s3deploy.BucketDeployment(this, 'SaveFile', {
         sources: [
-          s3deploy.Source.data(`${thingName}.cert.pem`, this.certPem),
-          s3deploy.Source.data(`${thingName}.private.key`, this.privKey),
+          s3deploy.Source.data(`${thingName}/${thingName}.cert.pem`, this.certPem),
+          s3deploy.Source.data(`${thingName}/${thingName}.private.key`, this.privKey),
         ],
         destinationBucket: saveFileBucket,
       });

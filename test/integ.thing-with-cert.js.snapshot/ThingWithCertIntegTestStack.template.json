@@ -9,7 +9,7 @@
       "Value": "true"
      },
      {
-      "Key": "aws-cdk:cr-owned:54f22cf0",
+      "Key": "aws-cdk:cr-owned:8786178f",
       "Value": "true"
      }
     ]
@@ -327,7 +327,7 @@
      },
      "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
     },
-    "Description": "AWS CDK resource provider framework - onEvent (IntegTestStack/ThingWithCert/lambdaProvider)",
+    "Description": "AWS CDK resource provider framework - onEvent (ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider)",
     "Environment": {
      "Variables": {
       "USER_ON_EVENT_FUNCTION_ARN": {
@@ -421,8 +421,8 @@
      }
     ],
     "SourceObjectKeys": [
-     "a01dee9057c1e279978b3f7f78b2237b85414011cfe1ff8620b8a3aa4a70ca6d.zip",
-     "941ec7a7066042daf3b3bc50440289138910f4613dd529471af5e14a5a4b7b63.zip"
+     "cd0b8eb3141b59ac2f37163c5ae6d17230c03e794251d82bc6f2fd3bda51b7ee.zip",
+     "72b33877f4701ffed22f7195cb1517274a48c8307d75b050e632b0d122e63c49.zip"
     ],
     "SourceMarkers": [
      {
@@ -727,7 +727,7 @@
     "Ref": "SaveFileBucket7DD29263"
    },
    "Export": {
-    "Name": "IntegTestStack:ExportsOutputRefSaveFileBucket7DD29263FB456F57"
+    "Name": "ThingWithCertIntegTestStack:ExportsOutputRefSaveFileBucket7DD29263FB456F57"
    }
   }
  },
