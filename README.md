@@ -26,7 +26,10 @@ npm i cdk-iot-core-certificates-v3
 ## Usage
 
 ```typescript
+import * as s3 from 'aws-cdk-lib/aws-s3';
 import { ThingWithCert } from 'cdk-iot-core-certificates-v3';
+
+declare const saveFileBucket: s3.IBucket;
 
 const { thingArn, certId, certPem, privKey } = new ThingWithCert(this, 'MyThing', {
   // The name of the thing
@@ -35,5 +38,9 @@ const { thingArn, certId, certPem, privKey } = new ThingWithCert(this, 'MyThing'
   saveToParamStore: true,
   // The prefix to use for the SSM Parameter Store parameters
   paramPrefix: 'test',
+  // The bucket to save the certificate and private key to
+  // Both files are saved at `{thingName}/{thingName}.private.key` and `{thingName}/{thingName}.cert.pem`
+  // If not provided, the certificate and private key will not be saved
+  saveFileBucket,
 });
 ```

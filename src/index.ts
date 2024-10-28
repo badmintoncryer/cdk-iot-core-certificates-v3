@@ -1,10 +1,13 @@
 import { join } from 'node:path';
 import { Duration, ResourceProps } from 'aws-cdk-lib';
-import { CfnCustomResource } from 'aws-cdk-lib/aws-cloudformation';
-import { CompositePrincipal, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { RetentionDays } from 'aws-cdk-lib/aws-logs';
-import { CfnParameter } from 'aws-cdk-lib/aws-ssm';
+import * as cfn from 'aws-cdk-lib/aws-cloudformation';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
+import * as logs from 'aws-cdk-lib/aws-logs';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import * as ssm from 'aws-cdk-lib/aws-ssm';
 import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 
@@ -26,6 +29,13 @@ export interface ThingWithCertProps extends ResourceProps {
    * The prefix for the parameter store path
    */
   readonly paramPrefix?: string;
+
+  /**
+   * The bucket to save the certificate and private key files
+   *
+   * @default - do not save the files
+   */
+  readonly saveFileBucket?: s3.IBucket;
 }
 
 /**
@@ -56,39 +66,40 @@ export class ThingWithCert extends Construct {
   constructor(scope: Construct, id: string, props: ThingWithCertProps) {
     super(scope, id);
 
-    const { thingName, saveToParamStore, paramPrefix } = props;
+    const { thingName, saveToParamStore, paramPrefix, saveFileBucket } = props;
 
-    const role = new Role(this, 'LambdaExecutionRole', {
-      assumedBy: new CompositePrincipal(new ServicePrincipal('lambda.amazonaws.com')),
+    const role = new iam.Role(this, 'LambdaExecutionRole', {
+      assumedBy: new iam.CompositePrincipal(new iam.ServicePrincipal('lambda.amazonaws.com')),
     });
 
     role.addToPolicy(
-      new PolicyStatement({
+      new iam.PolicyStatement({
         resources: ['arn:aws:logs:*:*:*'],
         actions: ['logs:CreateLogGroup', 'logs:CreateLogStream', 'logs:PutLogEvents'],
       }),
     );
 
     role.addToPolicy(
-      new PolicyStatement({
+      new iam.PolicyStatement({
         resources: ['*'],
         actions: ['iot:*'],
       }),
     );
 
-    const onEventHandler = new NodejsFunction(this, 'lambdaFunction', {
-      entry: join(__dirname, 'lambda', 'index.js'),
+    const onEventHandler = new nodejs.NodejsFunction(this, 'lambdaFunction', {
+      entry: join(__dirname, 'lambda', 'index.ts'),
       handler: 'handler',
       timeout: Duration.seconds(10),
       role,
-      logRetention: RetentionDays.ONE_DAY,
+      runtime: lambda.Runtime.NODEJS_LATEST,
+      logRetention: logs.RetentionDays.ONE_DAY,
     });
 
     const { serviceToken } = new Provider(this, 'lambdaProvider', {
       onEventHandler,
     });
 
-    const lambdaCustomResource = new CfnCustomResource(this, 'lambdaCustomResource', {
+    const lambdaCustomResource = new cfn.CfnCustomResource(this, 'lambdaCustomResource', {
       serviceToken,
     });
 
@@ -97,13 +108,13 @@ export class ThingWithCert extends Construct {
     const paramStorePath = getParamStorePath(thingName, paramPrefix);
 
     if (saveToParamStore) {
-      new CfnParameter(this, 'paramStoreCertPem', {
+      new ssm.CfnParameter(this, 'paramStoreCertPem', {
         type: 'String',
         value: lambdaCustomResource.getAtt('certPem').toString(),
         name: `${paramStorePath}/certPem`,
       });
 
-      new CfnParameter(this, 'paramStorePrivKey', {
+      new ssm.CfnParameter(this, 'paramStorePrivKey', {
         type: 'String',
         value: lambdaCustomResource.getAtt('privKey').toString(),
         name: `${paramStorePath}/privKey`,
@@ -114,6 +125,16 @@ export class ThingWithCert extends Construct {
     this.certId = lambdaCustomResource.getAtt('certId').toString();
     this.certPem = lambdaCustomResource.getAtt('certPem').toString();
     this.privKey = lambdaCustomResource.getAtt('privKey').toString();
+
+    if (saveFileBucket) {
+      new s3deploy.BucketDeployment(this, 'SaveFile', {
+        sources: [
+          s3deploy.Source.data(`${thingName}/${thingName}.cert.pem`, this.certPem),
+          s3deploy.Source.data(`${thingName}/${thingName}.private.key`, this.privKey),
+        ],
+        destinationBucket: saveFileBucket,
+      });
+    }
   }
 }
 

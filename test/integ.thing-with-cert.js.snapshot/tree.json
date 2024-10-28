@@ -4,21 +4,176 @@
     "id": "App",
     "path": "",
     "children": {
-      "IntegTestStack": {
-        "id": "IntegTestStack",
-        "path": "IntegTestStack",
+      "ThingWithCertIntegTestStack": {
+        "id": "ThingWithCertIntegTestStack",
+        "path": "ThingWithCertIntegTestStack",
         "children": {
+          "SaveFileBucket": {
+            "id": "SaveFileBucket",
+            "path": "ThingWithCertIntegTestStack/SaveFileBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ThingWithCertIntegTestStack/SaveFileBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "aws-cdk:auto-delete-objects",
+                        "value": "true"
+                      },
+                      {
+                        "key": "aws-cdk:cr-owned:8786178f",
+                        "value": "true"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.100.0"
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "ThingWithCertIntegTestStack/SaveFileBucket/Policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ThingWithCertIntegTestStack/SaveFileBucket/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "bucket": {
+                          "Ref": "SaveFileBucket7DD29263"
+                        },
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "s3:DeleteObject*",
+                                "s3:GetBucket*",
+                                "s3:List*",
+                                "s3:PutBucketPolicy"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "SaveFileBucket7DD29263",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "SaveFileBucket7DD29263",
+                                          "Arn"
+                                        ]
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucketPolicy",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.BucketPolicy",
+                  "version": "2.100.0"
+                }
+              },
+              "AutoDeleteObjectsCustomResource": {
+                "id": "AutoDeleteObjectsCustomResource",
+                "path": "ThingWithCertIntegTestStack/SaveFileBucket/AutoDeleteObjectsCustomResource",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "ThingWithCertIntegTestStack/SaveFileBucket/AutoDeleteObjectsCustomResource/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CustomResource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.100.0"
+            }
+          },
+          "Custom::S3AutoDeleteObjectsCustomResourceProvider": {
+            "id": "Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "path": "ThingWithCertIntegTestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "children": {
+              "Staging": {
+                "id": "Staging",
+                "path": "ThingWithCertIntegTestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.AssetStaging",
+                  "version": "2.100.0"
+                }
+              },
+              "Role": {
+                "id": "Role",
+                "path": "ThingWithCertIntegTestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.100.0"
+                }
+              },
+              "Handler": {
+                "id": "Handler",
+                "path": "ThingWithCertIntegTestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CustomResourceProvider",
+              "version": "2.100.0"
+            }
+          },
           "ThingWithCert": {
             "id": "ThingWithCert",
-            "path": "IntegTestStack/ThingWithCert",
+            "path": "ThingWithCertIntegTestStack/ThingWithCert",
             "children": {
               "LambdaExecutionRole": {
                 "id": "LambdaExecutionRole",
-                "path": "IntegTestStack/ThingWithCert/LambdaExecutionRole",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/LambdaExecutionRole",
                 "children": {
                   "ImportLambdaExecutionRole": {
                     "id": "ImportLambdaExecutionRole",
-                    "path": "IntegTestStack/ThingWithCert/LambdaExecutionRole/ImportLambdaExecutionRole",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/LambdaExecutionRole/ImportLambdaExecutionRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.100.0"
@@ -26,7 +181,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "IntegTestStack/ThingWithCert/LambdaExecutionRole/Resource",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/LambdaExecutionRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -51,11 +206,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "IntegTestStack/ThingWithCert/LambdaExecutionRole/DefaultPolicy",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/LambdaExecutionRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "IntegTestStack/ThingWithCert/LambdaExecutionRole/DefaultPolicy/Resource",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/LambdaExecutionRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -105,15 +260,15 @@
               },
               "lambdaFunction": {
                 "id": "lambdaFunction",
-                "path": "IntegTestStack/ThingWithCert/lambdaFunction",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction",
                 "children": {
                   "Code": {
                     "id": "Code",
-                    "path": "IntegTestStack/ThingWithCert/lambdaFunction/Code",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/Code",
                     "children": {
                       "Stage": {
                         "id": "Stage",
-                        "path": "IntegTestStack/ThingWithCert/lambdaFunction/Code/Stage",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/Code/Stage",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.AssetStaging",
                           "version": "2.100.0"
@@ -121,7 +276,7 @@
                       },
                       "AssetBucket": {
                         "id": "AssetBucket",
-                        "path": "IntegTestStack/ThingWithCert/lambdaFunction/Code/AssetBucket",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/Code/AssetBucket",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                           "version": "2.100.0"
@@ -135,7 +290,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "IntegTestStack/ThingWithCert/lambdaFunction/Resource",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                       "aws:cdk:cloudformation:props": {
@@ -143,7 +298,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                           },
-                          "s3Key": "c085a111f0703709f9a84f9951bb669e8c32751397cabdd07608cfa852497e3e.zip"
+                          "s3Key": "603956034e3f525873795e58c127a0eee9535cef803e774e5e30bdd4c95cd97c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -168,11 +323,11 @@
                   },
                   "LogRetention": {
                     "id": "LogRetention",
-                    "path": "IntegTestStack/ThingWithCert/lambdaFunction/LogRetention",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/LogRetention",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "IntegTestStack/ThingWithCert/lambdaFunction/LogRetention/Resource",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/LogRetention/Resource",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.CfnResource",
                           "version": "2.100.0"
@@ -186,7 +341,7 @@
                   },
                   "LogGroup": {
                     "id": "LogGroup",
-                    "path": "IntegTestStack/ThingWithCert/lambdaFunction/LogGroup",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/LogGroup",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.100.0"
@@ -200,19 +355,19 @@
               },
               "lambdaProvider": {
                 "id": "lambdaProvider",
-                "path": "IntegTestStack/ThingWithCert/lambdaProvider",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider",
                 "children": {
                   "framework-onEvent": {
                     "id": "framework-onEvent",
-                    "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent",
                     "children": {
                       "ServiceRole": {
                         "id": "ServiceRole",
-                        "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole",
                         "children": {
                           "ImportServiceRole": {
                             "id": "ImportServiceRole",
-                            "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/ImportServiceRole",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/ImportServiceRole",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.Resource",
                               "version": "2.100.0"
@@ -220,7 +375,7 @@
                           },
                           "Resource": {
                             "id": "Resource",
-                            "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/Resource",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                               "aws:cdk:cloudformation:props": {
@@ -259,11 +414,11 @@
                           },
                           "DefaultPolicy": {
                             "id": "DefaultPolicy",
-                            "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/DefaultPolicy",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/DefaultPolicy",
                             "children": {
                               "Resource": {
                                 "id": "Resource",
-                                "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource",
+                                "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource",
                                 "attributes": {
                                   "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                                   "aws:cdk:cloudformation:props": {
@@ -325,11 +480,11 @@
                       },
                       "Code": {
                         "id": "Code",
-                        "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Code",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Code",
                         "children": {
                           "Stage": {
                             "id": "Stage",
-                            "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Code/Stage",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Code/Stage",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.AssetStaging",
                               "version": "2.100.0"
@@ -337,7 +492,7 @@
                           },
                           "AssetBucket": {
                             "id": "AssetBucket",
-                            "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Code/AssetBucket",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Code/AssetBucket",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                               "version": "2.100.0"
@@ -351,7 +506,7 @@
                       },
                       "Resource": {
                         "id": "Resource",
-                        "path": "IntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Resource",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                           "aws:cdk:cloudformation:props": {
@@ -361,7 +516,7 @@
                               },
                               "s3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
                             },
-                            "description": "AWS CDK resource provider framework - onEvent (IntegTestStack/ThingWithCert/lambdaProvider)",
+                            "description": "AWS CDK resource provider framework - onEvent (ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider)",
                             "environment": {
                               "variables": {
                                 "USER_ON_EVENT_FUNCTION_ARN": {
@@ -402,7 +557,7 @@
               },
               "lambdaCustomResource": {
                 "id": "lambdaCustomResource",
-                "path": "IntegTestStack/ThingWithCert/lambdaCustomResource",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/lambdaCustomResource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::CloudFormation::CustomResource",
                   "aws:cdk:cloudformation:props": {
@@ -421,7 +576,7 @@
               },
               "paramStoreCertPem": {
                 "id": "paramStoreCertPem",
-                "path": "IntegTestStack/ThingWithCert/paramStoreCertPem",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/paramStoreCertPem",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
                   "aws:cdk:cloudformation:props": {
@@ -442,7 +597,7 @@
               },
               "paramStorePrivKey": {
                 "id": "paramStorePrivKey",
-                "path": "IntegTestStack/ThingWithCert/paramStorePrivKey",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/paramStorePrivKey",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
                   "aws:cdk:cloudformation:props": {
@@ -460,6 +615,150 @@
                   "fqn": "aws-cdk-lib.aws_ssm.CfnParameter",
                   "version": "2.100.0"
                 }
+              },
+              "SaveFile": {
+                "id": "SaveFile",
+                "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile",
+                "children": {
+                  "AwsCliLayer": {
+                    "id": "AwsCliLayer",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/AwsCliLayer",
+                    "children": {
+                      "Code": {
+                        "id": "Code",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/AwsCliLayer/Code",
+                        "children": {
+                          "Stage": {
+                            "id": "Stage",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/AwsCliLayer/Code/Stage",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.AssetStaging",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "AssetBucket": {
+                            "id": "AssetBucket",
+                            "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/AwsCliLayer/Code/AssetBucket",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/AwsCliLayer/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Lambda::LayerVersion",
+                          "aws:cdk:cloudformation:props": {
+                            "content": {
+                              "s3Bucket": {
+                                "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                              },
+                              "s3Key": "f24ba5e516d9d80b64bc7b0f406eedd12c36b20e7461f3e7719b7ffbdad72410.zip"
+                            },
+                            "description": "/opt/awscli/aws"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_lambda.CfnLayerVersion",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.lambda_layer_awscli.AwsCliLayer",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "CustomResourceHandler": {
+                    "id": "CustomResourceHandler",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/CustomResourceHandler",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.SingletonFunction",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "Asset1": {
+                    "id": "Asset1",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/Asset1",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/Asset1/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/Asset1/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "Asset2": {
+                    "id": "Asset2",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/Asset2",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/Asset2/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/Asset2/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "CustomResource": {
+                    "id": "CustomResource",
+                    "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/CustomResource",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "ThingWithCertIntegTestStack/ThingWithCert/SaveFile/CustomResource/Default",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CustomResource",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_deployment.BucketDeployment",
+                  "version": "2.100.0"
+                }
               }
             },
             "constructInfo": {
@@ -469,15 +768,15 @@
           },
           "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a": {
             "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
-            "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
             "children": {
               "Code": {
                 "id": "Code",
-                "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+                "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage",
+                    "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.100.0"
@@ -485,7 +784,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket",
+                    "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.100.0"
@@ -499,11 +798,11 @@
               },
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
+                "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
                 "children": {
                   "ImportServiceRole": {
                     "id": "ImportServiceRole",
-                    "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/ImportServiceRole",
+                    "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.100.0"
@@ -511,7 +810,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
+                    "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -550,11 +849,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
+                    "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
+                        "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -598,7 +897,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "IntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+                "path": "ThingWithCertIntegTestStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.100.0"
@@ -610,9 +909,252 @@
               "version": "10.0.5"
             }
           },
+          "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C": {
+            "id": "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+            "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/ImportServiceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::",
+                                          {
+                                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::",
+                                          {
+                                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:Abort*",
+                                    "s3:DeleteObject*",
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*",
+                                    "s3:PutObject",
+                                    "s3:PutObjectLegalHold",
+                                    "s3:PutObjectRetention",
+                                    "s3:PutObjectTagging",
+                                    "s3:PutObjectVersionTagging"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "SaveFileBucket7DD29263",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "SaveFileBucket7DD29263",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+                            "roles": [
+                              {
+                                "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.100.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.100.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "ThingWithCertIntegTestStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "9eb41a5505d37607ac419321497a4f8c21cf0ee1f9b4a6b29aa04301aea5c7fd.zip"
+                    },
+                    "environment": {
+                      "variables": {
+                        "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+                      }
+                    },
+                    "handler": "index.handler",
+                    "layers": [
+                      {
+                        "Ref": "ThingWithCertSaveFileAwsCliLayerF51A8B97"
+                      }
+                    ],
+                    "role": {
+                      "Fn::GetAtt": [
+                        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.9",
+                    "timeout": 900
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.100.0"
+            }
+          },
           "ThingArn": {
             "id": "ThingArn",
-            "path": "IntegTestStack/ThingArn",
+            "path": "ThingWithCertIntegTestStack/ThingArn",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.100.0"
@@ -620,7 +1162,7 @@
           },
           "CertId": {
             "id": "CertId",
-            "path": "IntegTestStack/CertId",
+            "path": "ThingWithCertIntegTestStack/CertId",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.100.0"
@@ -628,7 +1170,7 @@
           },
           "CertPem": {
             "id": "CertPem",
-            "path": "IntegTestStack/CertPem",
+            "path": "ThingWithCertIntegTestStack/CertPem",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.100.0"
@@ -636,15 +1178,33 @@
           },
           "PrivKey": {
             "id": "PrivKey",
-            "path": "IntegTestStack/PrivKey",
+            "path": "ThingWithCertIntegTestStack/PrivKey",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.100.0"
             }
           },
+          "Exports": {
+            "id": "Exports",
+            "path": "ThingWithCertIntegTestStack/Exports",
+            "children": {
+              "Output{\"Ref\":\"SaveFileBucket7DD29263\"}": {
+                "id": "Output{\"Ref\":\"SaveFileBucket7DD29263\"}",
+                "path": "ThingWithCertIntegTestStack/Exports/Output{\"Ref\":\"SaveFileBucket7DD29263\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.5"
+            }
+          },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
-            "path": "IntegTestStack/BootstrapVersion",
+            "path": "ThingWithCertIntegTestStack/BootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnParameter",
               "version": "2.100.0"
@@ -652,7 +1212,7 @@
           },
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
-            "path": "IntegTestStack/CheckBootstrapVersion",
+            "path": "ThingWithCertIntegTestStack/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.100.0"
@@ -684,6 +1244,356 @@
                 "id": "DeployAssert",
                 "path": "IntegTest/DefaultTest/DeployAssert",
                 "children": {
+                  "AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838": {
+                    "id": "AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838",
+                    "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838",
+                    "children": {
+                      "SdkProvider": {
+                        "id": "SdkProvider",
+                        "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/SdkProvider",
+                        "children": {
+                          "AssertionsProvider": {
+                            "id": "AssertionsProvider",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/SdkProvider/AssertionsProvider",
+                            "constructInfo": {
+                              "fqn": "constructs.Construct",
+                              "version": "10.0.5"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                          "version": "2.100.0-alpha.0"
+                        }
+                      },
+                      "Default": {
+                        "id": "Default",
+                        "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/Default",
+                        "children": {
+                          "Default": {
+                            "id": "Default",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/Default/Default",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CustomResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "WaitFor": {
+                        "id": "WaitFor",
+                        "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor",
+                        "children": {
+                          "IsCompleteProvider": {
+                            "id": "IsCompleteProvider",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/IsCompleteProvider",
+                            "children": {
+                              "AssertionsProvider": {
+                                "id": "AssertionsProvider",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/IsCompleteProvider/AssertionsProvider",
+                                "constructInfo": {
+                                  "fqn": "constructs.Construct",
+                                  "version": "10.0.5"
+                                }
+                              },
+                              "Invoke": {
+                                "id": "Invoke",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/IsCompleteProvider/Invoke",
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.CfnResource",
+                                  "version": "2.100.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                              "version": "2.100.0-alpha.0"
+                            }
+                          },
+                          "TimeoutProvider": {
+                            "id": "TimeoutProvider",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/TimeoutProvider",
+                            "children": {
+                              "AssertionsProvider": {
+                                "id": "AssertionsProvider",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/TimeoutProvider/AssertionsProvider",
+                                "constructInfo": {
+                                  "fqn": "constructs.Construct",
+                                  "version": "10.0.5"
+                                }
+                              },
+                              "Invoke": {
+                                "id": "Invoke",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/TimeoutProvider/Invoke",
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.CfnResource",
+                                  "version": "2.100.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                              "version": "2.100.0-alpha.0"
+                            }
+                          },
+                          "Role": {
+                            "id": "Role",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/Role",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject8d4cace221a89f6f0869a920472cb838/WaitFor/Resource",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/integ-tests-alpha.WaiterStateMachine",
+                          "version": "2.100.0-alpha.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
+                      "version": "2.100.0-alpha.0"
+                    }
+                  },
+                  "SingletonFunction1488541a7b23466481b69b4408076b81": {
+                    "id": "SingletonFunction1488541a7b23466481b69b4408076b81",
+                    "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81",
+                    "children": {
+                      "Staging": {
+                        "id": "Staging",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Staging",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Role": {
+                        "id": "Role",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Role",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Handler": {
+                        "id": "Handler",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Handler",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.0.5"
+                    }
+                  },
+                  "SingletonFunction76b3e830a873425f8453eddd85c86925": {
+                    "id": "SingletonFunction76b3e830a873425f8453eddd85c86925",
+                    "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction76b3e830a873425f8453eddd85c86925",
+                    "children": {
+                      "Staging": {
+                        "id": "Staging",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction76b3e830a873425f8453eddd85c86925/Staging",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Role": {
+                        "id": "Role",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction76b3e830a873425f8453eddd85c86925/Role",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Handler": {
+                        "id": "Handler",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction76b3e830a873425f8453eddd85c86925/Handler",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.0.5"
+                    }
+                  },
+                  "SingletonFunction5c1898e096fb4e3e95d5f6c67f3ce41a": {
+                    "id": "SingletonFunction5c1898e096fb4e3e95d5f6c67f3ce41a",
+                    "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction5c1898e096fb4e3e95d5f6c67f3ce41a",
+                    "children": {
+                      "Staging": {
+                        "id": "Staging",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction5c1898e096fb4e3e95d5f6c67f3ce41a/Staging",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Role": {
+                        "id": "Role",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction5c1898e096fb4e3e95d5f6c67f3ce41a/Role",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "Handler": {
+                        "id": "Handler",
+                        "path": "IntegTest/DefaultTest/DeployAssert/SingletonFunction5c1898e096fb4e3e95d5f6c67f3ce41a/Handler",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.0.5"
+                    }
+                  },
+                  "AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0": {
+                    "id": "AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0",
+                    "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0",
+                    "children": {
+                      "SdkProvider": {
+                        "id": "SdkProvider",
+                        "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/SdkProvider",
+                        "children": {
+                          "AssertionsProvider": {
+                            "id": "AssertionsProvider",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/SdkProvider/AssertionsProvider",
+                            "constructInfo": {
+                              "fqn": "constructs.Construct",
+                              "version": "10.0.5"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                          "version": "2.100.0-alpha.0"
+                        }
+                      },
+                      "Default": {
+                        "id": "Default",
+                        "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/Default",
+                        "children": {
+                          "Default": {
+                            "id": "Default",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/Default/Default",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CustomResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "WaitFor": {
+                        "id": "WaitFor",
+                        "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor",
+                        "children": {
+                          "IsCompleteProvider": {
+                            "id": "IsCompleteProvider",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/IsCompleteProvider",
+                            "children": {
+                              "AssertionsProvider": {
+                                "id": "AssertionsProvider",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/IsCompleteProvider/AssertionsProvider",
+                                "constructInfo": {
+                                  "fqn": "constructs.Construct",
+                                  "version": "10.0.5"
+                                }
+                              },
+                              "Invoke": {
+                                "id": "Invoke",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/IsCompleteProvider/Invoke",
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.CfnResource",
+                                  "version": "2.100.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                              "version": "2.100.0-alpha.0"
+                            }
+                          },
+                          "TimeoutProvider": {
+                            "id": "TimeoutProvider",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/TimeoutProvider",
+                            "children": {
+                              "AssertionsProvider": {
+                                "id": "AssertionsProvider",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/TimeoutProvider/AssertionsProvider",
+                                "constructInfo": {
+                                  "fqn": "constructs.Construct",
+                                  "version": "10.0.5"
+                                }
+                              },
+                              "Invoke": {
+                                "id": "Invoke",
+                                "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/TimeoutProvider/Invoke",
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.CfnResource",
+                                  "version": "2.100.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                              "version": "2.100.0-alpha.0"
+                            }
+                          },
+                          "Role": {
+                            "id": "Role",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/Role",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "IntegTest/DefaultTest/DeployAssert/AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0/WaitFor/Resource",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/integ-tests-alpha.WaiterStateMachine",
+                          "version": "2.100.0-alpha.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
+                      "version": "2.100.0-alpha.0"
+                    }
+                  },
                   "BootstrapVersion": {
                     "id": "BootstrapVersion",
                     "path": "IntegTest/DefaultTest/DeployAssert/BootstrapVersion",

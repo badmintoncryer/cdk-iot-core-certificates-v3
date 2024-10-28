@@ -179,6 +179,7 @@ const thingWithCertProps: ThingWithCertProps = { ... }
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.region">region</a></code> | <code>string</code> | The AWS region this resource belongs to. |
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.thingName">thingName</a></code> | <code>string</code> | The name of the thing. |
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.paramPrefix">paramPrefix</a></code> | <code>string</code> | The prefix for the parameter store path. |
+| <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.saveFileBucket">saveFileBucket</a></code> | <code>aws-cdk-lib.aws_s3.IBucket</code> | The bucket to save the certificate and private key files. |
 | <code><a href="#cdk-iot-core-certificates-v3.ThingWithCertProps.property.saveToParamStore">saveToParamStore</a></code> | <code>boolean</code> | Whether to save the certificate and private key to AWS Systems Manager Parameter Store. |
 
 ---
@@ -267,6 +268,19 @@ public readonly paramPrefix: string;
 - *Type:* string
 
 The prefix for the parameter store path.
+
+---
+
+##### `saveFileBucket`<sup>Optional</sup> <a name="saveFileBucket" id="cdk-iot-core-certificates-v3.ThingWithCertProps.property.saveFileBucket"></a>
+
+```typescript
+public readonly saveFileBucket: IBucket;
+```
+
+- *Type:* aws-cdk-lib.aws_s3.IBucket
+- *Default:* do not save the files
+
+The bucket to save the certificate and private key files.
 
 ---
 
