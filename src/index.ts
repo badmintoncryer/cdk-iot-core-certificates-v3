@@ -87,7 +87,7 @@ export class ThingWithCert extends Construct {
     );
 
     const onEventHandler = new nodejs.NodejsFunction(this, 'lambdaFunction', {
-      entry: join(__dirname, 'lambda', 'index.ts'),
+      entry: join(__dirname, 'lambda', 'index.js'),
       handler: 'handler',
       timeout: Duration.seconds(10),
       role,
