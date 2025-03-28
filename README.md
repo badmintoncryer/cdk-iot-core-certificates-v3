@@ -44,3 +44,34 @@ const { thingArn, certId, certPem, privKey } = new ThingWithCert(this, 'MyThing'
   saveFileBucket,
 });
 ```
+
+If you want to create multiple things and save certificates and private keys to the same bucket, you should not use `saveFileBucket` prop and save them at once by `BucketDeployment` construct.
+
+This is because the each `saveFileBucket` prop will share a custom resource for each thing, which will cause the deployment to fail.
+
+```typescript
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import { ThingWithCert } from 'cdk-iot-core-certificates-v3';
+
+const thingNames = ['Thing1', 'Thing2', 'Thing3'];
+const certBucket = new s3.Bucket(this, "CertBucket");
+const sources: s3deploy.ISource[] = [];
+
+thingNames.forEach((thingName, index) => {
+  const { certPem, privKey } = new ThingWithCert(this, `Thing${index}`, {
+    thingName,
+    saveToParamStore: true,
+  });
+  sources.push(
+    s3deploy.Source.data(`${thingName}/${thingName}.cert.pem`, certPem),
+    s3deploy.Source.data(`${thingName}/${thingName}.private.key`, privKey)
+  );
+});
+
+// Deploy the certificate and private key to the S3 bucket at once
+new s3deploy.BucketDeployment(this, "DeployCerts", {
+  sources,
+  destinationBucket: certBucket,
+});
+```
