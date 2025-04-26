@@ -11,6 +11,7 @@
     "clobber": "npx projen clobber",
     "compat": "npx projen compat",
     "compile": "npx projen compile",
+    "convert-hardlink": "npx projen convert-hardlink",
     "default": "npx projen default",
     "docgen": "npx projen docgen",
     "eject": "npx projen eject",
@@ -81,7 +82,7 @@
     "aws",
     "aws-cdk",
     "cdk",
-    "ec2"
+    "iot"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",

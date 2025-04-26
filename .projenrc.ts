@@ -8,8 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: 'cdk-iot-core-certificates-v3',
   projenrcTs: true,
   repositoryUrl: 'https://github.com/badmintoncryer/cdk-iot-core-certificates-v3.git',
-
-  keywords: ['aws', 'cdk', 'ec2', 'aws-cdk'],
+  keywords: ['aws', 'cdk', 'iot', 'aws-cdk'],
   gitignore: ['*.js', '*.d.ts', '!test/.*.snapshot/**/*', '.tmp'],
   deps: ['@aws-sdk/client-iot'],
   description: 'CDK Construct for AWS IoT Core certificates and things',
@@ -31,4 +30,12 @@ project.projectBuild.compileTask.prependExec('npm ci && npm run build', {
 project.projectBuild.testTask.exec(
   'yarn tsc -p tsconfig.dev.json && yarn integ-runner',
 );
+project.addTask('convert-hardlink', {
+  exec: 'find . -type f -links +1 -exec cp -f {} {}.tmp \\; -exec mv {}.tmp {} \\;',
+});
+const publishTask = project.tasks.tryFind('release:npm');
+const task = project.tasks.tryFind('convert-hardlinks');
+if (publishTask && task) {
+  publishTask.prependSpawn(task);
+}
 project.synth();
