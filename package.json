@@ -51,11 +51,11 @@
     "eslint-plugin-import": "^2.31.0",
     "jest": "^29.7.0",
     "jest-junit": "^15",
-    "jsii": "~5.5.0",
+    "jsii": "~5.8.0",
     "jsii-diff": "^1.105.0",
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.105.0",
-    "jsii-rosetta": "~5.5.0",
+    "jsii-rosetta": "~5.8.0",
     "projen": "^0.90.5",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
@@ -141,7 +141,7 @@
     "targets": {
       "python": {
         "distName": "cdk-iot-core-certificates-v3",
-        "module": "cdk-iot-core-certificates-v3"
+        "module": "cdk_iot_core_certificates_v3"
       }
     },
     "tsc": {

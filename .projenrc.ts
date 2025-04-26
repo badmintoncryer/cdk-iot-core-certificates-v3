@@ -4,7 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'malaysia.cryer@gmail.com',
   cdkVersion: '2.100.0',
   defaultReleaseBranch: 'main',
-  jsiiVersion: '~5.5.0',
+  jsiiVersion: '~5.8.0',
   name: 'cdk-iot-core-certificates-v3',
   projenrcTs: true,
   repositoryUrl: 'https://github.com/badmintoncryer/cdk-iot-core-certificates-v3.git',
@@ -21,7 +21,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   packageName: 'cdk-iot-core-certificates-v3',
   publishToPypi: {
     distName: 'cdk-iot-core-certificates-v3',
-    module: 'cdk-iot-core-certificates-v3',
+    module: 'cdk_iot_core_certificates_v3',
   },
   bundledDeps: ['@aws-sdk/client-iot', '@smithy/smithy-client', 'aws-lambda', '@types/aws-lambda'],
 });
