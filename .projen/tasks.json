@@ -96,6 +96,14 @@
         }
       ]
     },
+    "convert-hardlink": {
+      "name": "convert-hardlink",
+      "steps": [
+        {
+          "exec": "find . -type f -links +1 -exec cp -f {} {}.tmp \\; -exec mv {}.tmp {} \\;"
+        }
+      ]
+    },
     "default": {
       "name": "default",
       "description": "Synthesize project files",
