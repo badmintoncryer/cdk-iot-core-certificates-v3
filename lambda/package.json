@@ -1,0 +1,26 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "main": "index.js",
+  "types": "./index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild index.ts --bundle --outdir=./build --platform=node --external:@aws-sdk/* --loader:.html=text"
+  },
+  "dependencies": {
+    "@aws-sdk/client-iot": "^3.797.0",
+    "@smithy/smithy-client": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
+    "@types/node": "^22.15.2",
+    "aws-sdk": "^2.1692.0",
+    "esbuild": "^0.25.3",
+    "nock": "^14.0.4"
+  },
+  "files": [
+    "build/index.js"
+  ]
+}

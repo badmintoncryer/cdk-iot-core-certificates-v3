@@ -1,5 +1,5 @@
 {
-  "version": "34.0.0",
+  "version": "36.0.0",
   "artifacts": {
     "ThingWithCertIntegTestStack.assets": {
       "type": "cdk:asset-manifest",
@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/636c3401eb79daec6c73decf9100fc95cc884d0b4cfc77c28510fd001d4b45c1.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/622d7a3af6282742d2bd0c1c6b43145993034afe0b6c29e930974434c4bb2a13.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -52,6 +52,12 @@
             "data": "SaveFileBucketAutoDeleteObjectsCustomResource97A0BDEF"
           }
         ],
+        "/ThingWithCertIntegTestStack/LatestNodeRuntimeMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LatestNodeRuntimeMap"
+          }
+        ],
         "/ThingWithCertIntegTestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
           {
             "type": "aws:cdk:logicalId",
@@ -76,16 +82,16 @@
             "data": "ThingWithCertLambdaExecutionRoleDefaultPolicy9FF9FB4B"
           }
         ],
-        "/ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/Resource": [
+        "/ThingWithCertIntegTestStack/ThingWithCert/LambdaFunction/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "ThingWithCertlambdaFunction9E90C8BA"
+            "data": "ThingWithCertLambdaFunctionCA8B03CC"
           }
         ],
-        "/ThingWithCertIntegTestStack/ThingWithCert/lambdaFunction/LogRetention/Resource": [
+        "/ThingWithCertIntegTestStack/ThingWithCert/LambdaFunction/LogRetention/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "ThingWithCertlambdaFunctionLogRetention1BE9E451"
+            "data": "ThingWithCertLambdaFunctionLogRetention57B16CCB"
           }
         ],
         "/ThingWithCertIntegTestStack/ThingWithCert/lambdaProvider/framework-onEvent/ServiceRole/Resource": [
@@ -213,6 +219,24 @@
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
+        ],
+        "ThingWithCertlambdaFunction9E90C8BA": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThingWithCertlambdaFunction9E90C8BA",
+            "trace": [
+              "!!DESTRUCTIVE_CHANGES: WILL_DESTROY"
+            ]
+          }
+        ],
+        "ThingWithCertlambdaFunctionLogRetention1BE9E451": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThingWithCertlambdaFunctionLogRetention1BE9E451",
+            "trace": [
+              "!!DESTRUCTIVE_CHANGES: WILL_DESTROY"
+            ]
+          }
         ]
       },
       "displayName": "ThingWithCertIntegTestStack"
@@ -234,7 +258,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2f754a10da99e89275339606fae6434d70bbbff534d8faa60b2afc07eb2ee121.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a96c92489a270488ba4c694ef9c39a8ced1b835caba606111df70289835b2ed2.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -291,6 +315,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "SingletonFunction1488541a7b23466481b69b4408076b81HandlerCD40AE9F"
+          }
+        ],
+        "/IntegTest/DefaultTest/DeployAssert/LatestNodeRuntimeMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LatestNodeRuntimeMap"
           }
         ],
         "/IntegTest/DefaultTest/DeployAssert/SingletonFunction76b3e830a873425f8453eddd85c86925/Role": [

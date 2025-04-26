@@ -3,7 +3,6 @@ import { Duration, ResourceProps } from 'aws-cdk-lib';
 import * as cfn from 'aws-cdk-lib/aws-cloudformation';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
@@ -86,12 +85,12 @@ export class ThingWithCert extends Construct {
       }),
     );
 
-    const onEventHandler = new nodejs.NodejsFunction(this, 'lambdaFunction', {
-      entry: join(__dirname, 'lambda', 'index.js'),
-      handler: 'handler',
+    const onEventHandler = new lambda.Function(this, 'LambdaFunction', {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      code: lambda.Code.fromAsset(join(__dirname, '../lambda/build')),
+      handler: 'index.handler',
       timeout: Duration.seconds(10),
       role,
-      runtime: lambda.Runtime.NODEJS_LATEST,
       logRetention: logs.RetentionDays.ONE_DAY,
     });
 
