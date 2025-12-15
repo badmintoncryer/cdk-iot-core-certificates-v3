@@ -18,9 +18,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   releaseToNpm: true,
   packageName: 'cdk-iot-core-certificates-v3',
+  npmTrustedPublishing: true,
+  workflowNodeVersion: '24',
   publishToPypi: {
     distName: 'cdk-iot-core-certificates-v3',
     module: 'cdk_iot_core_certificates_v3',
+    trustedPublishing: true,
   },
   bundledDeps: ['@aws-sdk/client-iot', '@smithy/smithy-client', 'aws-lambda', '@types/aws-lambda'],
 });
