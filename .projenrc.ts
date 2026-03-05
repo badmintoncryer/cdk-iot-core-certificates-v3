@@ -36,9 +36,9 @@ project.projectBuild.testTask.exec(
 project.addTask('convert-hardlink', {
   exec: 'find . -type f -links +1 -exec cp -f {} {}.tmp \\; -exec mv {}.tmp {} \\;',
 });
-const publishTask = project.tasks.tryFind('release:npm');
+const packageJsTask = project.tasks.tryFind('package:js');
 const task = project.tasks.tryFind('convert-hardlink');
-if (publishTask && task) {
-  publishTask.prependSpawn(task);
+if (packageJsTask && task) {
+  packageJsTask.prependSpawn(task);
 }
 project.synth();

@@ -197,6 +197,9 @@
       "description": "Create js language bindings",
       "steps": [
         {
+          "spawn": "convert-hardlink"
+        },
+        {
           "exec": "jsii-pacmak -v --target js"
         }
       ]
