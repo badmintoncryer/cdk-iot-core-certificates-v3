@@ -52,10 +52,10 @@
                           "Statement": [
                             {
                               "Action": [
-                                "s3:DeleteObject*",
+                                "s3:PutBucketPolicy",
                                 "s3:GetBucket*",
                                 "s3:List*",
-                                "s3:PutBucketPolicy"
+                                "s3:DeleteObject*"
                               ],
                               "Effect": "Allow",
                               "Principal": {
@@ -671,7 +671,7 @@
                               "s3Bucket": {
                                 "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                               },
-                              "s3Key": "a912487bb1b34f5e5f6f07325f76f44d9faf30d9054d221303f1f3220d1d610e.zip"
+                              "s3Key": "4c0f7bf9173df1c120604820692548150b09e29f6fba95f38b11caa17c9696bb.zip"
                             },
                             "description": "/opt/awscli/aws"
                           }
@@ -872,8 +872,8 @@
                               "Statement": [
                                 {
                                   "Action": [
-                                    "logs:DeleteRetentionPolicy",
-                                    "logs:PutRetentionPolicy"
+                                    "logs:PutRetentionPolicy",
+                                    "logs:DeleteRetentionPolicy"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": "*"
@@ -989,8 +989,8 @@
                               "Statement": [
                                 {
                                   "Action": [
-                                    "s3:GetBucket*",
                                     "s3:GetObject*",
+                                    "s3:GetBucket*",
                                     "s3:List*"
                                   ],
                                   "Effect": "Allow",
@@ -1006,8 +1006,7 @@
                                           ":s3:::",
                                           {
                                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
-                                          },
-                                          "/*"
+                                          }
                                         ]
                                       ]
                                     },
@@ -1022,7 +1021,8 @@
                                           ":s3:::",
                                           {
                                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
-                                          }
+                                          },
+                                          "/*"
                                         ]
                                       ]
                                     }
@@ -1030,16 +1030,16 @@
                                 },
                                 {
                                   "Action": [
-                                    "s3:Abort*",
-                                    "s3:DeleteObject*",
-                                    "s3:GetBucket*",
                                     "s3:GetObject*",
+                                    "s3:GetBucket*",
                                     "s3:List*",
+                                    "s3:DeleteObject*",
                                     "s3:PutObject",
                                     "s3:PutObjectLegalHold",
                                     "s3:PutObjectRetention",
                                     "s3:PutObjectTagging",
-                                    "s3:PutObjectVersionTagging"
+                                    "s3:PutObjectVersionTagging",
+                                    "s3:Abort*"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": [
@@ -1193,6 +1193,32 @@
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.150.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "ThingWithCertIntegTestStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "ThingWithCertIntegTestStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.150.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "ThingWithCertIntegTestStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.150.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.5"
             }
           },
           "Exports": {
@@ -1611,6 +1637,32 @@
                     "constructInfo": {
                       "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
                       "version": "2.150.0-alpha.0"
+                    }
+                  },
+                  "CDKMetadata": {
+                    "id": "CDKMetadata",
+                    "path": "IntegTest/DefaultTest/DeployAssert/CDKMetadata",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "IntegTest/DefaultTest/DeployAssert/CDKMetadata/Default",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.150.0"
+                        }
+                      },
+                      "Condition": {
+                        "id": "Condition",
+                        "path": "IntegTest/DefaultTest/DeployAssert/CDKMetadata/Condition",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnCondition",
+                          "version": "2.150.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.0.5"
                     }
                   },
                   "BootstrapVersion": {

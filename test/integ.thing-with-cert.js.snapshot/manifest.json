@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/622d7a3af6282742d2bd0c1c6b43145993034afe0b6c29e930974434c4bb2a13.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f765fd0a36784eb8d81a15e0879da8bf567ad9b79c557df880263dabe66ad39b.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -202,6 +202,18 @@
             "data": "PrivKey"
           }
         ],
+        "/ThingWithCertIntegTestStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ThingWithCertIntegTestStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
         "/ThingWithCertIntegTestStack/Exports/Output{\"Ref\":\"SaveFileBucket7DD29263\"}": [
           {
             "type": "aws:cdk:logicalId",
@@ -218,24 +230,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
-          }
-        ],
-        "ThingWithCertlambdaFunction9E90C8BA": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ThingWithCertlambdaFunction9E90C8BA",
-            "trace": [
-              "!!DESTRUCTIVE_CHANGES: WILL_DESTROY"
-            ]
-          }
-        ],
-        "ThingWithCertlambdaFunctionLogRetention1BE9E451": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ThingWithCertlambdaFunctionLogRetention1BE9E451",
-            "trace": [
-              "!!DESTRUCTIVE_CHANGES: WILL_DESTROY"
-            ]
           }
         ]
       },
@@ -258,7 +252,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a96c92489a270488ba4c694ef9c39a8ced1b835caba606111df70289835b2ed2.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2c32be3c18d2ab4182aef19334b02ee94da44a2eb9fc0dee3e1f39bce4b56844.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -375,6 +369,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "AwsApiCallS3getObject3a18bd8365b48515822fa908297eb2d0WaitForE90F57B1"
+          }
+        ],
+        "/IntegTest/DefaultTest/DeployAssert/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/IntegTest/DefaultTest/DeployAssert/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
           }
         ],
         "/IntegTest/DefaultTest/DeployAssert/BootstrapVersion": [
