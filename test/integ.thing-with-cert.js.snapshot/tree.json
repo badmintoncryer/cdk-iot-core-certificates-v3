@@ -52,10 +52,10 @@
                           "Statement": [
                             {
                               "Action": [
-                                "s3:PutBucketPolicy",
+                                "s3:DeleteObject*",
                                 "s3:GetBucket*",
                                 "s3:List*",
-                                "s3:DeleteObject*"
+                                "s3:PutBucketPolicy"
                               ],
                               "Effect": "Allow",
                               "Principal": {
@@ -872,8 +872,8 @@
                               "Statement": [
                                 {
                                   "Action": [
-                                    "logs:PutRetentionPolicy",
-                                    "logs:DeleteRetentionPolicy"
+                                    "logs:DeleteRetentionPolicy",
+                                    "logs:PutRetentionPolicy"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": "*"
@@ -989,8 +989,8 @@
                               "Statement": [
                                 {
                                   "Action": [
-                                    "s3:GetObject*",
                                     "s3:GetBucket*",
+                                    "s3:GetObject*",
                                     "s3:List*"
                                   ],
                                   "Effect": "Allow",
@@ -1006,7 +1006,8 @@
                                           ":s3:::",
                                           {
                                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
-                                          }
+                                          },
+                                          "/*"
                                         ]
                                       ]
                                     },
@@ -1021,8 +1022,7 @@
                                           ":s3:::",
                                           {
                                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
-                                          },
-                                          "/*"
+                                          }
                                         ]
                                       ]
                                     }
@@ -1030,16 +1030,16 @@
                                 },
                                 {
                                   "Action": [
-                                    "s3:GetObject*",
-                                    "s3:GetBucket*",
-                                    "s3:List*",
+                                    "s3:Abort*",
                                     "s3:DeleteObject*",
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*",
                                     "s3:PutObject",
                                     "s3:PutObjectLegalHold",
                                     "s3:PutObjectRetention",
                                     "s3:PutObjectTagging",
-                                    "s3:PutObjectVersionTagging",
-                                    "s3:Abort*"
+                                    "s3:PutObjectVersionTagging"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": [
@@ -1193,32 +1193,6 @@
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.150.0"
-            }
-          },
-          "CDKMetadata": {
-            "id": "CDKMetadata",
-            "path": "ThingWithCertIntegTestStack/CDKMetadata",
-            "children": {
-              "Default": {
-                "id": "Default",
-                "path": "ThingWithCertIntegTestStack/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnResource",
-                  "version": "2.150.0"
-                }
-              },
-              "Condition": {
-                "id": "Condition",
-                "path": "ThingWithCertIntegTestStack/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnCondition",
-                  "version": "2.150.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "constructs.Construct",
-              "version": "10.0.5"
             }
           },
           "Exports": {
@@ -1637,32 +1611,6 @@
                     "constructInfo": {
                       "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
                       "version": "2.150.0-alpha.0"
-                    }
-                  },
-                  "CDKMetadata": {
-                    "id": "CDKMetadata",
-                    "path": "IntegTest/DefaultTest/DeployAssert/CDKMetadata",
-                    "children": {
-                      "Default": {
-                        "id": "Default",
-                        "path": "IntegTest/DefaultTest/DeployAssert/CDKMetadata/Default",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.CfnResource",
-                          "version": "2.150.0"
-                        }
-                      },
-                      "Condition": {
-                        "id": "Condition",
-                        "path": "IntegTest/DefaultTest/DeployAssert/CDKMetadata/Condition",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.CfnCondition",
-                          "version": "2.150.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "constructs.Construct",
-                      "version": "10.0.5"
                     }
                   },
                   "BootstrapVersion": {
