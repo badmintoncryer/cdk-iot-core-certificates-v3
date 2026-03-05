@@ -86,7 +86,7 @@ export class ThingWithCert extends Construct {
     );
 
     const onEventHandler = new lambda.Function(this, 'LambdaFunction', {
-      runtime: lambda.Runtime.NODEJS_22_X,
+      runtime: new lambda.Runtime('nodejs22.x', lambda.RuntimeFamily.NODEJS),
       code: lambda.Code.fromAsset(join(__dirname, '../lambda/build')),
       handler: 'index.handler',
       timeout: Duration.seconds(10),
