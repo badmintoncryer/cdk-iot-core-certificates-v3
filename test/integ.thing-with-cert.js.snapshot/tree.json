@@ -315,7 +315,7 @@
                             "Arn"
                           ]
                         },
-                        "runtime": "nodejs20.x",
+                        "runtime": "nodejs22.x",
                         "timeout": 10
                       }
                     },
