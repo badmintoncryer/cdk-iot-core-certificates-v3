@@ -315,7 +315,7 @@
                             "Arn"
                           ]
                         },
-                        "runtime": "nodejs20.x",
+                        "runtime": "nodejs22.x",
                         "timeout": 10
                       }
                     },
@@ -671,7 +671,7 @@
                               "s3Bucket": {
                                 "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                               },
-                              "s3Key": "a912487bb1b34f5e5f6f07325f76f44d9faf30d9054d221303f1f3220d1d610e.zip"
+                              "s3Key": "4c0f7bf9173df1c120604820692548150b09e29f6fba95f38b11caa17c9696bb.zip"
                             },
                             "description": "/opt/awscli/aws"
                           }

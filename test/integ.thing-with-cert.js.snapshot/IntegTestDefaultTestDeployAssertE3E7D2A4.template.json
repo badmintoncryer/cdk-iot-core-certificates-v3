@@ -30,7 +30,7 @@
      "Key": "\"testThing/testThing.cert.pem\""
     },
     "flattenResponse": "false",
-    "salt": "1745636394507"
+    "salt": "1772675951599"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
@@ -406,7 +406,7 @@
      "Key": "\"testThing/testThing.private.key\""
     },
     "flattenResponse": "false",
-    "salt": "1745636394509"
+    "salt": "1772675951601"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
