@@ -57,7 +57,7 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.127.0",
     "jsii-rosetta": "~5.8.0",
-    "projen": "^0.99.20",
+    "projen": "^0.99.26",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
@@ -67,7 +67,7 @@
     "constructs": "^10.5.1"
   },
   "dependencies": {
-    "@aws-sdk/client-iot": "^3.1009.0",
+    "@aws-sdk/client-iot": "^3.1020.0",
     "@smithy/smithy-client": "^3.7.0",
     "@types/aws-lambda": "^8.10.161",
     "aws-lambda": "^1.0.7"
