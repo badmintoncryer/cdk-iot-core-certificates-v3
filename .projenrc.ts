@@ -1,4 +1,4 @@
-import { awscdk } from 'projen';
+import { awscdk, javascript } from 'projen';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Kazuho CryerShinozuka',
   authorAddress: 'malaysia.cryer@gmail.com',
@@ -6,6 +6,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.8.0',
   name: 'cdk-iot-core-certificates-v3',
+  packageManager: javascript.NodePackageManager.YARN_CLASSIC,
   projenrcTs: true,
   repositoryUrl: 'https://github.com/badmintoncryer/cdk-iot-core-certificates-v3.git',
   keywords: ['aws', 'cdk', 'iot', 'aws-cdk'],
