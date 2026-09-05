@@ -35,7 +35,7 @@ project.projectBuild.testTask.exec(
   'yarn tsc -p test/tsconfig.json --noEmit false --outDir . && yarn integ-runner',
 );
 project.addTask('convert-hardlink', {
-  exec: 'find . -type f -links +1 -exec cp -f {} {}.tmp \\; -exec mv {}.tmp {} \\;',
+  exec: "find . -type f -links +1 -exec cp -f {} {}.tmp ';' -exec mv {}.tmp {} ';'",
 });
 const packageJsTask = project.tasks.tryFind('package:js');
 const task = project.tasks.tryFind('convert-hardlink');

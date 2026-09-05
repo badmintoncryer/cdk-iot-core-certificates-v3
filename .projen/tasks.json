@@ -145,7 +145,7 @@
       "name": "convert-hardlink",
       "steps": [
         {
-          "exec": "find . -type f -links +1 -exec cp -f {} {}.tmp \\; -exec mv {}.tmp {} \\;"
+          "exec": "find . -type f -links +1 -exec cp -f {} {}.tmp ';' -exec mv {}.tmp {} ';'"
         }
       ]
     },
