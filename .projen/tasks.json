@@ -350,7 +350,7 @@
           "spawn": "eslint"
         },
         {
-          "exec": "yarn tsc -p tsconfig.dev.json && yarn integ-runner"
+          "exec": "yarn tsc -p test/tsconfig.json --noEmit false --outDir . && yarn integ-runner"
         }
       ]
     },
