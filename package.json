@@ -42,7 +42,7 @@
     "@aws-cdk/integ-tests-alpha": "2.150.0-alpha.0",
     "@stylistic/eslint-plugin": "^2",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.20.1",
+    "@types/node": "^22.20.2",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.150.0",
@@ -58,7 +58,7 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.140.0",
     "jsii-rosetta": "~5.8.0",
-    "projen": "^0.103.18",
+    "projen": "^0.103.23",
     "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
@@ -68,7 +68,7 @@
     "constructs": "^10.5.1"
   },
   "dependencies": {
-    "@aws-sdk/client-iot": "^3.1126.0",
+    "@aws-sdk/client-iot": "^3.1131.0",
     "@smithy/smithy-client": "^3.7.0",
     "@types/aws-lambda": "^8.10.163",
     "aws-lambda": "^1.0.7"
